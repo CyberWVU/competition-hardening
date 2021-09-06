@@ -1,0 +1,19 @@
+---
+- name: Create user with sudo privileges
+  hosts: localhost
+  become: true
+  vars: 
+    new_user:
+
+  tasks:
+  - name: Add new admin user
+    user:
+      name: "{{ new_user }}"
+      groups: sudo #Give this user sudo privileges so we can use it instead of the root account
+      shell: /bin/bash
+      create_home: yes
+      generate_ssh_key: yes
+      ssh_key_bits: 4096
+      home: /home/.{{ new_user }}
+      password: '!' #Only use ssh key to authenticate
+      state: present
