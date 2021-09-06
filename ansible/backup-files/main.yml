@@ -1,0 +1,36 @@
+# A lot of playbooks take backups but you should run this one first thing so you can look back 
+# if something goes wrong. Lots of competitions also require you to document vulnerabilities for points
+---
+- name: Take backups of important files
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Create /etc/.anso/backups
+      file:
+        path: /etc/.anso/backups
+        state: directory
+        owner: root
+        group: root
+        mode: '0640'
+
+    - name: Backup files
+      shell: cp "{{item}}" /etc/.anso/backups/
+      with_items:
+      - /etc/passwd
+      - /etc/shadow
+      - /etc/group
+      - /etc/sudoers
+      - /etc/ssh/ssh_config
+      - /etc/ssh/sshd_config
+      - /etc/crontab
+      - /etc/sysctl.conf
+
+    - name: Change permissions of backup files
+      file:
+        path: /etc/.anso/backups
+        state: directory
+        owner: root
+        group: root
+        mode: '0640'
+        recurse: yes
