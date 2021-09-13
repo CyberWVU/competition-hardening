@@ -15,7 +15,7 @@
     - name: Download LinEnum
       git:
         repo: 'https://github.com/rebootuser/LinEnum.git'
-        dest: /etc/.anso/LinEnum/
+        dest: /etc/.anso/LinEnum
 
     - name: Run script and output to /etc/.anso/linenum.out
-      shell: /etc/.anso/LinEnum.sh >> /etc/.anso/LinEnum.out
+      shell: /etc/.anso/LinEnum/LinEnum.sh >> /etc/.anso/LinEnum.out
