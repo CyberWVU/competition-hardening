@@ -1,2 +1,2 @@
 # competition-hardening
-Scripts, and guides to hardening systems for inherit and defend competitions
+Scripts, and guides to harden systems for inherit and defend competitions
