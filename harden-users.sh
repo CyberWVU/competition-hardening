@@ -5,19 +5,15 @@ usage()
 {
 cat <<EOF
     Usage:
-        lbm-inject -i iso -p preseed [ -t tar file ] [ -h ] [ -n ]
+        harden-users.sh -f users.txt [ -r ] [ -h ]
         
         -h	Show the help menu
-        -i	The iso file to use
-        -p 	The preseed file to inject 
-        -t	The tar file to extract. Must NOT be compressed. 
-        -n      Create net media.
+        -r	Lock the root account
+        -f 	File of usernames to lock
 
     Description:
- 	  This tool will inject files into a Ubuntu iso. Preseeds are 
-	  automatically placed into the correct location to be used
-	  on boot. All tar files are placed in the /loud directory in 
-	  the root of the iso file.
+ 	  This script takes in a list of user accounts and locks them, deletes their
+	  passwords, removes their shell access, etc.
 
 EOF
 }
@@ -38,9 +34,6 @@ while [ "$1" != "" ]; do
     
     if [ "$1" == "-f" ]; then
 	USERS_FILE="${2}"; shift
-
-    elif [ "$1" == "u" ]; then
-	KEEP_USER="${2}"; shift
 
     elif [ "$1" == "-r" ]; then
 	LOCK_ROOT="TRUE"; shift
