@@ -1,24 +1,16 @@
 ---
-- name: Remove vulnerable packages (Ubuntu)
-  apt:
+- name: Remove vulnerable packages
+  package:
     pkg: 
     - socat
     - nc
     - netcat
     - nmap
     - john
+    - talk
+    - telnet
+    - openldap-clients
+    - rsh
+    - ypbind
     state: absent
-  become: true
-  when: ansible_distribution == "Ubuntu"
-
-- name: Remove vulnerable packages (Centos)
-  yum:
-    pkg: 
-    - socat
-    - nc
-    - netcat
-    - nmap
-    - john
-    state: absent
-  become: true
-  when: ansible_distribution == "Centos"    
+  become: true   

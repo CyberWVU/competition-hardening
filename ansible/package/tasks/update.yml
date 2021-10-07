@@ -1,6 +1,13 @@
 ---
-- name: Update and upgrade
+- name: Update and upgrade (Debian, Ubuntu)
   apt: 
     upgrade: yes
     update_cache: yes
   become: yes
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Update and upgrade (Centos)
+  yum:
+    name: '*'
+    state: latest
+    autoremove: yes
