@@ -6,6 +6,7 @@
     - nc
     - netcat
     - nmap
+    - john
     state: absent
   become: true
   when: ansible_distribution == "Ubuntu"
@@ -17,6 +18,7 @@
     - nc
     - netcat
     - nmap
+    - john
     state: absent
   become: true
   when: ansible_distribution == "Centos"    
