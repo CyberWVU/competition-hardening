@@ -5,23 +5,13 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-#Check for empty passwords
-awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow
-awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow > user-audit.txt
-
-#Lock the account until we know why it didn't have a password
-# for u in "$(cat password-audit.txt | cut -d " " -f1)"
-#     do
-#         echo $u
-#     done
-
 #Disable guest login
 echo "greeter-show-remote-login=false" >> /etc/lightdm/lightdm.conf
 echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
-restart lightdm
+# service lightdm restart # Run after script completes
 
 #Check home directory permissions
-readarray user_array < $(ls /home))
+readarray user_array < "$(ls /home)"
 for u in $user_array
 do
     echo "$u"
@@ -30,15 +20,21 @@ do
 done
 
 #Check if root has *
-# if $(cat /etc/shadow | grep root | cut -d : -f2) == "*"; then
-#     echo "Root does not have a password set" >> password-audit.txt
-# fi
+if $(cat /etc/shadow | grep root | cut -d : -f2) == "*"; then
+    echo "Root does not have a password set"
+    echo "Root does not have a password set" >> password-audit.txt
+fi
+
+#Check for empty passwords
+awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow
+awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow > user-audit.txt
 
 #Check for root accounts - if there are aliases, get rid of them
+awk -F: '($3 == 0) { print $1 " :root account found"}' /etc/passwd
 awk -F: '($3 == 0) { print $1 " :root account found"}' /etc/passwd >> password-audit.txt
 
 #Ensure root gid
-#usermod -g 0 root
+usermod -g 0 root
 
 #Set user shells
 # for user in `awk -F: '($3 < 500) {print $1 }' /etc/passwd` ; 
