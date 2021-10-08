@@ -13,4 +13,4 @@
     dest: /etc/.anso/PEASS-ng
 
 - name: Run script and output to /etc/.anso/linenum.out
-  shell: /etc/.anso/PEASS-ng/linPEAS/linpeas.sh >> /etc/.anso/linpeas.out
+  shell: /etc/.anso/PEASS-ng/linPEAS/linpeas.sh >> /etc/.anso/linpeas.txt

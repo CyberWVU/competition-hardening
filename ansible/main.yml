@@ -4,7 +4,7 @@
   
   roles:
   #- { role: backup-files, become: yes }
-  #- { role: audit, become: yes }
+  - { role: audit, become: yes }
   - { role: linpeas, become: yes }
   - { role: logon-banners, become: yes }
   - { role: best-practices, become: yes }
