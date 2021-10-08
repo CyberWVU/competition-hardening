@@ -7,10 +7,10 @@
     group: root
     mode: '0640'
     
-- name: Download LinEnum
+- name: Download LinPeas
   git:
-    repo: 'https://github.com/rebootuser/LinEnum.git'
-    dest: /etc/.anso/LinEnum
+    repo: 'https://github.com/carlospolop/PEASS-ng.git'
+    dest: /etc/.anso/PEASS-ng
 
 - name: Run script and output to /etc/.anso/linenum.out
-  shell: /etc/.anso/LinEnum/LinEnum.sh >> /etc/.anso/LinEnum.out
+  shell: /etc/.anso/PEASS-ng/linPEAS/linpeas.sh >> /etc/.anso/linpeas.out
