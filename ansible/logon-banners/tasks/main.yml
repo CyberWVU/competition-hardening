@@ -14,7 +14,7 @@
 
   - name: Add banner to ssh config
     lineinfile:
-      path: /etc/ssh/sshd_config
+      dest: /etc/ssh/sshd_config
       regexp: '^#Banner none'
       line: Banner /etc/login.warn
 
