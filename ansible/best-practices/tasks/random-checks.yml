@@ -3,17 +3,6 @@
   service:
     name: cron
     enabled: yes
-
-- name: Configure /etc/hosts.deny 
-  lineinfile:
-    dest: /etc/hosts.deny
-    line: 'ALL: ALL'
-    
-- name: Password expiration
-  lineinfile:
-    dest: /etc/login.defs
-    regexp: "^PASS_MAX_DAYS"
-    line: PASS_MAX_DAYS 90
     
 - name: Password expiration
   lineinfile:
