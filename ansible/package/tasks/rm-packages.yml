@@ -12,5 +12,6 @@
     - openldap-clients
     - rsh
     - ypbind
+    - xorg-x11*
     state: absent
   become: true   

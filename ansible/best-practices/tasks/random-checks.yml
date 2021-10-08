@@ -1,0 +1,11 @@
+---
+- name: Enable cron (Ubuntu)
+  service:
+    name: cron
+    enabled: yes
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: Configure /etc/hosts.deny 
+  lineinfile:
+    dest: /etc/hosts.deny
+    line: 'ALL: ALL'
