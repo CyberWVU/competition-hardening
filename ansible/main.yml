@@ -3,10 +3,9 @@
   hosts: localhost
   
   roles:
-  #- { role: backup-files, become: yes }
-  - { role: audit, become: yes }
+  - { role: backup-files, become: yes }
   - { role: linpeas, become: yes }
   - { role: logon-banners, become: yes }
   - { role: best-practices, become: yes }
-  #- { role: package, become: yes }
-  #- { role: sshd, become: yes }
+  - { role: package, become: yes }
+  - { role: sshd, become: yes }
