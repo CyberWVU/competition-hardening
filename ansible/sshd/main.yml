@@ -1,35 +1,30 @@
 ---
-- name: Secure sshd config
-  hosts: localhost
-  become: yes
+- name: Ensure backup directory exists with correct perms
+  file:
+    dest: /etc/.anso/backups/sshd
+    state: directory
+    owner: root
+    group: root
+    mode: '0640'
 
-  tasks:
-  - name: Ensure backup directory exists with correct perms
-    file:
-      dest: /etc/.anso/backups/sshd
-      state: directory
-      owner: root
-      group: root
-      mode: '0640'
+- name: Backup file
+  copy: 
+    src: /etc/ssh/sshd_config 
+    dest: /etc/.anso/backups/sshd/sshd_config.bak 
+    owner: root 
+    group: root 
+    mode: 0640
 
-  - name: Backup file
-    copy: 
-      src: /etc/ssh/sshd_config 
-      dest: /etc/.anso/backups/sshd/sshd_config.bak 
-      owner: root 
-      group: root 
-      mode: 0640
+- name: Copy new ssh config
+  copy:
+    src: default_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
 
-  - name: Copy new ssh config
-    copy:
-      src: default_config
-      dest: /etc/ssh/sshd_config
-      owner: root
-      group: root
-      mode: 0644
-
-  - name: Restart sshd service
-    service:
-      name: sshd
-      state: reloaded
+- name: Restart sshd service
+  service:
+    name: sshd
+    state: reloaded
 

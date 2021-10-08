@@ -1,0 +1,11 @@
+---
+- name: Competition hardening
+  hosts: localhost
+  
+  roles:
+  - { role: backup-files, become: yes }
+  - { role: linenum, become: yes }
+  - { role: logon-banners, become: yes }
+  - { role: best-practices, become: yes }
+  - { role: package, become: yes }
+  - { role: sshd, become: yes }

@@ -1,32 +1,27 @@
 ---
-- name: Implement Logon Banners for Linux
-  hosts: localhost
-  become: true
+- name: Create warning file
+  copy:
+    src: before-login.txt
+    dest: /etc/login.warn
+    owner: root
+    group: root
+    mode: '0644'
 
-  tasks:
-  - name: Create warning file
-    copy:
-      src: before-login.txt
-      dest: /etc/login.warn
-      owner: root
-      group: root
-      mode: '0644'
+- name: Add banner to ssh config
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#Banner none'
+    line: Banner /etc/login.warn
 
-  - name: Add banner to ssh config
-    lineinfile:
-      dest: /etc/ssh/sshd_config
-      regexp: '^#Banner none'
-      line: Banner /etc/login.warn
+- name: Restart sshd
+  service: 
+    name: sshd 
+    state: restarted
 
-  - name: Restart sshd
-    service: 
-      name: sshd 
-      state: restarted
-
-  - name: Copy after login banner
-    copy:
-      src: after-login.txt
-      dest: /etc/motd
-      owner: root
-      group: root
-      mode: '0644'
+- name: Copy after login banner
+  copy:
+    src: after-login.txt
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: '0644'

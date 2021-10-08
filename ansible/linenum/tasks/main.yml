@@ -1,21 +1,16 @@
 ---
-- name: Download and run LinEnum
-  hosts: localhost
-  become: true
+- name: Ensure /etc/.anso exists
+  file: 
+    dest: /etc/.anso
+    state: directory
+    owner: root
+    group: root
+    mode: '0640'
+    
+- name: Download LinEnum
+  git:
+    repo: 'https://github.com/rebootuser/LinEnum.git'
+    dest: /etc/.anso/LinEnum
 
-  tasks:
-    - name: Ensure /etc/.anso exists
-      file: 
-        dest: /etc/.anso
-        state: directory
-        owner: root
-        group: root
-        mode: '0640'
-        
-    - name: Download LinEnum
-      git:
-        repo: 'https://github.com/rebootuser/LinEnum.git'
-        dest: /etc/.anso/LinEnum
-
-    - name: Run script and output to /etc/.anso/linenum.out
-      shell: /etc/.anso/LinEnum/LinEnum.sh >> /etc/.anso/LinEnum.out
+- name: Run script and output to /etc/.anso/linenum.out
+  shell: /etc/.anso/LinEnum/LinEnum.sh >> /etc/.anso/LinEnum.out

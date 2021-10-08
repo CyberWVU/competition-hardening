@@ -1,8 +1,4 @@
 ---
-- name: Basic best practices, settings
-  hosts: localhost
-
-  tasks:
-  - { include: password-policy.yml, become: yes}
-  - { include: file-permissions.yml, become: yes}
-  - { include: random-checks.yml, become: yes}
+- include_tasks: password-policy.yml
+- include_tasks: file-permissions.yml
+- include_tasks: random-checks.yml

@@ -1,7 +1,3 @@
 ---
-- name: Package update and provisioning
-  hosts: localhost
-
-  tasks:
-  - include: rm-packages.yml
-  - include: update.yml
+- include_tasks: rm-packages.yml
+- include_tasks: update.yml
