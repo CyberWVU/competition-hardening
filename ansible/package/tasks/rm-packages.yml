@@ -2,16 +2,19 @@
 - name: Remove vulnerable packages
   package:
     pkg: 
-    - socat
+    - hashcat
+    - john
     - nc
     - netcat
     - nmap
-    - john
-    - talk
-    - telnet
     - openldap-clients
     - rsh
+    - talk
+    - telnet
+    - xorg
+    - xorg-x11-server
+    - xorg-x11-utils
     - ypbind
-    - xorg-x11*
+    - socat
     state: absent
   become: true   
