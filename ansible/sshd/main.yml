@@ -6,7 +6,7 @@
   tasks:
   - name: Ensure backup directory exists with correct perms
     file:
-      path: /etc/.anso/backups/sshd
+      dest: /etc/.anso/backups/sshd
       state: directory
       owner: root
       group: root

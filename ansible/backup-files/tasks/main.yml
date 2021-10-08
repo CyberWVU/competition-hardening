@@ -8,7 +8,7 @@
   tasks:
     - name: Create /etc/.anso/backups
       file:
-        path: /etc/.anso/backups
+        dest: /etc/.anso/backups
         state: directory
         owner: root
         group: root
@@ -28,7 +28,7 @@
 
     - name: Change permissions of backup files
       file:
-        path: /etc/.anso/backups
+        dest: /etc/.anso/backups
         state: directory
         owner: root
         group: root

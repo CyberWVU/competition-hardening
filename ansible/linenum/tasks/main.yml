@@ -6,7 +6,7 @@
   tasks:
     - name: Ensure /etc/.anso exists
       file: 
-        path: /etc/.anso
+        dest: /etc/.anso
         state: directory
         owner: root
         group: root
