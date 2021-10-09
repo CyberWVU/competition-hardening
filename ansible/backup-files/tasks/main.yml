@@ -20,6 +20,9 @@
   - /etc/ssh/sshd_config
   - /etc/crontab
   - /etc/sysctl.conf
+  - /etc/login.defs
+  - /etc/pam.d/common-password
+  - /etc/pam.d/common-auth
 
 - name: Change permissions of backup files
   file:

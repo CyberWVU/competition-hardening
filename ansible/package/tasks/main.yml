@@ -16,5 +16,4 @@
     - xorg-x11-utils
     - ypbind
     - socat
-    state: absent
-  become: true   
+    state: absent 
