@@ -1,3 +1,20 @@
 ---
-- include_tasks: rm-packages.yml
-- include_tasks: update.yml
+- name: Remove vulnerable packages
+  package:
+    pkg: 
+    - hashcat
+    - john
+    - nc
+    - netcat
+    - nmap
+    - openldap-clients
+    - rsh
+    - talk
+    - telnet
+    - xorg
+    - xorg-x11-server
+    - xorg-x11-utils
+    - ypbind
+    - socat
+    state: absent
+  become: true   

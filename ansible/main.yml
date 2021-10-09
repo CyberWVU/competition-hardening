@@ -10,4 +10,5 @@
   - { role: file-permissions, become: yes }
   - { role: password-policy, become: yes }
   - { role: package, become: yes }
+  - { role: update, become: yes }
   - { role: sshd, become: yes }
