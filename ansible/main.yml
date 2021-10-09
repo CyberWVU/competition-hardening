@@ -7,5 +7,7 @@
   - { role: linpeas, become: yes }
   - { role: logon-banners, become: yes }
   - { role: best-practices, become: yes }
+  - { role: file-permissions, become: yes }
+  - { role: password-policy, become: yes }
   - { role: package, become: yes }
   - { role: sshd, become: yes }
