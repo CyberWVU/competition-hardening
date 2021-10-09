@@ -18,30 +18,30 @@
     regexp: "^PASS_MAX_DAYS"
     line: PASS_MAX_DAYS 90
 
-- name: Password history file
-  file:
-    dest: /etc/security/opasswd
-    owner: root
-    group: shadow
-    mode: 0640
+# - name: Password history file
+#   file:
+#     dest: /etc/security/opasswd
+#     owner: root
+#     group: shadow
+#     mode: 0640
     
-- name: Install cracklib pkg
-  package: name=libpam-cracklib state=present
+# - name: Install cracklib pkg
+#   package: name=libpam-cracklib state=present
 
-- name: Password complexity requirement
-  lineinfile:
-    dest: /etc/pam.d/common-password
-    regexp: "^pam_cracklib.so"
-    line: password  requisite   pam_cracklib.so retry=3 minlen=8 difok=3 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1
+# - name: Password complexity requirement
+#   lineinfile:
+#     dest: /etc/pam.d/common-password
+#     regexp: "^pam_cracklib.so"
+#     line: password  requisite   pam_cracklib.so retry=3 minlen=8 difok=3 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1
 
-- name: Password history requirement
-  lineinfile:
-    dest: /etc/pam.d/common-auth
-    regexp: "^pam_unix.so"
-    line: password required pam_unix.so md5 remember=5 use_authtok
+# - name: Password history requirement
+#   lineinfile:
+#     dest: /etc/pam.d/common-auth
+#     regexp: "^pam_unix.so"
+#     line: password required pam_unix.so md5 remember=5 use_authtok
 
-- name: Account policy
-  lineinfile:
-    dest: /etc/pam.d/common-auth
-    line:  auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800
-    create: yes
+# - name: Account policy
+#   lineinfile:
+#     dest: /etc/pam.d/common-auth
+#     line:  auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800
+#     create: yes
